@@ -1,0 +1,73 @@
+<router-outlet></router-outlet>
+<ul class="collection">
+</ul>
+<div class="section rent-car-section">
+  <div class="container rent-car-container">
+    <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+      <div class="row">
+        <div class="col s12 center">
+          <h1 class="w3-animate-top">Boek mijn auto</h1>
+          <hr class="w3-border-orange w3-animate-top hr-border">
+        </div>
+        <div class="input-field col s12 searchbar-rent-car">
+          <div class="col s12">
+            Inleverlocatie
+          </div>
+          <div class="col s12 valign-wrapper">
+            <i class="material-icons fix-inline prefix" style="top:auto;">search</i>
+            <select id="selectDropoff" formControlName="dropoffLocation" [ngClass]="{ 'is-invalid': submitted && f.dropoffLocation.errors }">
+              <option value="none" disabled>Selecteer een locatie</option>
+              <option value="Utrecht">Utrecht</option>
+              <option value="Amsterdam">Amsterdam</option>
+              <option value="Almelo">Almelo</option>
+              <option value="Almere">Almere</option>
+              <option value="Maastricht">Maastricht</option>
+              <option value="Maasdam">Maasdam</option>
+              <option value="Lelystad">Lelystad</option>
+            </select>
+        </div>
+        <div *ngIf="submitted && f.dropoffLocation.errors" class="invalid-feedback center">
+          <div style="margin-top: 10px; color: red;" *ngIf="submitted && f.dropoffLocation.errors.required">Inleverlocatie is verplicht!</div>
+        </div>
+      </div>
+        <div class="input-field col s12 m6">
+          <div class="col s12">
+            Ophaaldatum
+          </div>
+          <div class="col s7">
+            <input type="date" formControlName="beginDate" [min]="beginDate" max="maxDate">
+            <div *ngIf="submitted && f.beginDate.errors" class="invalid-feedback">
+              <div style="margin-top: 10px; color: red;" *ngIf="submitted && f.beginDate.errors.required">Ophaaldatum is verplicht!</div>
+            </div>
+          </div>
+          <div class="col s5">
+            <input type="time" formControlName="localStartTime">
+            <div *ngIf="submitted && f.localStartTime.errors" class="invalid-feedback">
+              <div style="margin-top: 10px; color: red;" *ngIf="submitted && f.localStartTime.errors.required">Ophaaltijd is verplicht!</div>
+            </div>
+          </div>
+        </div>
+        <div class="input-field col s12 m6">
+          <div class="col s12">
+            Inleverdatum
+          </div>
+          <div class="col s7">
+            <input type="date" formControlName="endDate" [min]="beginDate" max="maxDate">
+            <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+              <div style="margin-top: 10px; color: red;" *ngIf="submitted && f.endDate.errors.required">Einddatum is verplicht!</div>
+            </div>
+          </div>
+          <div class="col s5">
+            <input type="time" formControlName="localEndTime">
+            <div *ngIf="submitted && f.localEndTime.errors" class="invalid-feedback">
+              <div style="margin-top: 10px; color: red;" *ngIf="submitted && f.localEndTime.errors.required">Eindtijd is verplicht!</div>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 center">
+          <a (click)="submitBooking()" class="btn waves-effect waves-dark bg-main">Huur je auto</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

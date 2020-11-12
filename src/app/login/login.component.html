@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col s12 m8 l4 offset-m2 offset-l4" style="margin-top: 30px;">
+        <div id="logincard" class="card #f5f5f5 grey lighten-4">
+
+            <div class="card-title bg-main" style="height: 10px;">
+            </div>
+
+            <div class="card-content">
+                
+                <form [formGroup]="inlogForm" (ngSubmit)="onSubmit()"> 
+
+                    <div style="margin-bottom: 30px; color: red;" *ngIf="errormsg" class="alert alert-red">{{ errormsg }}</div>
+
+                <div class="input-field">
+                    
+                    <i class="material-icons prefix">account_circle</i>
+                    <input class="validate" type="text" id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                    <label for="username">Gebruikersnaam</label>
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div style="margin-top: 10px; color: red;" *ngIf="f.username.errors.required">E-mailadres is verplicht!</div>
+                    </div>
+                </div><br>
+
+                <div class="input-field">
+                    <i class="material-icons prefix">security</i>
+                    <input type="password" id="password" class="validate" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <label for="password">Wachtwoord</label>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div style="margin-top: 10px; color: red;" *ngIf="f.password.errors.required">Wachtwoord is verplicht!</div>
+                    </div>
+                </div><br>
+
+                <div class="form-field">
+                <br>
+
+                <div class="form-field">
+                    <button [disabled]="loading" id="login_button" class="btn-large waves-effect waves-dark #ffd600 bg-main" style="width:100%; border-radius: 20px;" type="submit">Login</button>
+                    <br><br>
+                    <button routerLink="/register" id="registreer_button" class="btn-large waves-effect waves-dark #f9a825 yellow darken-3" style="width:100%; border-radius: 20px;">Registreer</button>
+                </div><br>
+            </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>

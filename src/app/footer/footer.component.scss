@@ -1,0 +1,26 @@
+.page-footer {
+  margin-top: 4rem;
+}
+
+.page-footer {
+  background-color: #373737;
+  border-top: 2px solid #ffd54f;
+  box-shadow: 0px 0px 10px 5px rgba($color: #000000, $alpha: 0.5);
+}
+
+.cool_link {
+  display: inline-block;
+}
+
+.cool_link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ffd54f;
+  transition: width .3s;
+}
+
+.cool_link:hover::after {
+  width: 100%;
+}

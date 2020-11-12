@@ -1,0 +1,46 @@
+<div class="section">
+    <div class="container featured-cars">
+      <div class="center">
+        <hr class="w3-border-orange w3-animate-top hr-border">
+      </div>
+      <div class="row">
+        <div *ngFor="let car of cars">
+          <div class="col s12 m4">
+            <div class="card hoverable center-align">
+              <div class="card-image">
+                <img class="responsive-img activator" src="{{ car.carphoto }}">
+              </div>
+              <div class="card-content">
+                <span class="price">€{{ car.priceph }} p/uur</span>
+                <div class="details">
+                  <div class="col s12 m4">
+                    <div class="detail-inline">
+                      <div class="detailCat"><i class="inline-icon material-icons">directions_car</i></div>
+                      <div class="detailVal">{{ car.horsepower }}PK</div>
+                    </div>
+                  </div>
+                  <div class="col s12 m4">
+                    <div class="detail-inline">
+                      <div class="detailCat"><i class="inline-icon material-icons">local_gas_station</i></div>
+                      <div class="detailVal">1/{{ car.mileage }}KM</div>
+                    </div>
+                  </div>
+                  <div class="col s12 m4">
+                    <div class="detail-inline">
+                      <div class="detailCat"><i class="inline-icon material-icons">person</i></div>
+                      <div class="detailVal">{{ car.seats }}</div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+              <div class="divider"></div>
+              <span class="card-title activator grey-text text-darken-4">{{ car.carmodel }}</span>
+              <a (click)="reserveerAuto(car.id)" class="waves-effect waves-light bg-main btn btn-block"><i
+                  class="material-icons right">arrow_forward</i>Nu
+                reserveren</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

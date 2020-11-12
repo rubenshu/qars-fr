@@ -1,0 +1,8 @@
+<app-topbar></app-topbar>
+<div id="content-wrap">
+  <router-outlet>
+    <!-- temporary ngIf until fix is found for remembering search param -->
+    <app-search-card *ngIf="getCurrentPath().includes('cars') || getCurrentPath() === '/'"></app-search-card>
+  </router-outlet>
+</div>
+<app-footer></app-footer>

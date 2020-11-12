@@ -1,0 +1,68 @@
+<div class="section" *ngIf="car">
+	<div class="container">
+		<div class="row">
+			<div class="col s12">
+				<h1 style="border-left: 7px solid #ffd54f;">&nbsp;{{ car.carmodel }}</h1>
+			</div>
+
+			<div class="col s12 m6">
+				<img class="responsive-img activator" src="{{ car.carphoto }}" id="car_img">
+			</div>
+
+			<div class="col s12 m6">
+				<div class="col s12">
+					<div class="detail-car">
+						<div class="detailVal">
+							<i>'{{ car.cardescription }}'</i>
+						</div>
+					</div>
+				</div>
+				<div class="col s12">
+					<div class="detail-car">
+						<div class="detailVal">
+							<br>Per uur: <b>&euro;{{ car.priceph }}</b>
+						</div>
+					</div>
+				</div>
+				<div class="col s12">
+					<div class="detail-car">
+						<div class="detailVal">Locatie:
+							<b>{{ car.establishment.location.city }}</b>
+						</div>
+					</div>
+				</div>
+				<div class="col s12">
+					<div class="detail-car">
+						<div class="detailVal">Nu beschikbaar:
+							<span *ngIf="car.available == false"><b>Nee</b></span>
+							<span *ngIf="car.available == true"><b>Ja</b></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col s12 m6">
+				<div class="col s12">
+					<div class="detail-car">
+						<div class="detailCat"><br><i class="inline-icon material-icons">directions_car</i></div>
+						<div class="detailVal"><br>&nbsp;{{ car.horsepower }}PK</div>
+					</div>
+				</div>
+				<div class="col s12">
+					<div class="detail-car">
+						<div class="detailCat"><i class="inline-icon material-icons">local_gas_station</i></div>
+						<div class="detailVal">&nbsp;1/{{ car.mileage }}KM</div>
+					</div>
+				</div>
+				<div class="col s12">
+					<div class="detail-car">
+						<div class="detailCat"><i class="inline-icon material-icons">person</i></div>
+						<div class="detailVal">&nbsp;{{ car.seats }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a (click)="pageBack()" class="waves-effect waves-light bg-main btn btn-block" style="width: fit-content"><i
+			class="material-icons left">arrow_back</i>Terug</a>
+	</div>
+</div>

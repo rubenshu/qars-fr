@@ -1,0 +1,85 @@
+<nav class="#212121 grey darken-4" id="nav-top" style="border-bottom: 2px solid #ffd54f;">
+  <div class="nav-wrapper">
+    <a routerLink="" class="brand-logo" style="padding-left: 23px;"><img src="../../assets/images/dummylogo3.png"
+        height="55"></a>
+
+    <ul class="right hide-on-med-and-down">
+      <li *ngIf="!isAdmin()" style="padding-left: 100px; left: 10px; position: absolute;"><a routerLink=""
+          [ngStyle]="{'color':getCurrentPath() === '/' ? ' #ffd54f' : 'white' }" id="home_button"
+          class="waves-effect waves-light" style="height: 73px;"><i class="material-icons left"
+            style="position: relative; right: -10px;">home</i>Home</a></li>
+      <li *ngIf="!isAdmin()" style="left: 225px; position: absolute;"><a routerLink="/cars"
+          [ngStyle]="{'color':getCurrentPath().includes('cars') ? ' #ffd54f' : 'white' }" id="autos_button"
+          class="waves-effect waves-light" style="height: 73px;"><i class="material-icons left"
+            style="position: relative; right: -10px;">directions_car </i>Auto's</a></li>
+      <!-- <li style="left: 342px; position: absolute;"><a routerLink="/rent"
+          [ngStyle]="{'color':getCurrentPath().includes('rent') ? ' #ffd54f' : 'white' }" id="huren_button"
+          class="waves-effect waves-light" style="height: 73px;"><i class="material-icons left"
+            style="position: relative; right: -10px;">today</i>Huren</a></li> -->
+      <li *ngIf="isAdmin()" style="padding-left: 100px; left: 10px; position: absolute;"><a routerLink="/admin/dashboard"
+        [ngStyle]="{'color':getCurrentPath().includes('dashboard') ? ' #ffd54f' : 'white' }" id="dashboard_button"
+        class="waves-effect waves-light" style="height: 73px;"><i class="material-icons left"
+          style="position: relative; right: -10px;">dashboard</i>Dashboard</a></li>
+      <li *ngIf="isAdmin()" style="left: 260px; position: absolute;"><a routerLink="/admin/license-requests"
+        [ngStyle]="{'color':getCurrentPath().includes('requests') ? ' #ffd54f' : 'white' }" id="aanvragen_button"
+        class="waves-effect waves-light" style="height: 73px;"><i class="material-icons left"
+          style="position: relative; right: -10px;">assignment_late</i>Aanvragen</a></li>
+
+
+      <a *ngIf="isCustomer()" routerLink="/profile"
+        [ngStyle]="{'color':getCurrentPath() === '/profile' ? ' #ffd54f' : 'white' }" id="profiel_button"
+        class="waves-effect waves-light" style="right: 145px; height: 73px; position: absolute;"><i
+          class="material-icons left" style="position: relative; right: -10px;">perm_identity</i>Profiel</a>
+
+      <div>
+        <a *ngIf="!authenticationService.currentUserValue" routerLink="/login"
+          [ngStyle]="{'color':getCurrentPath() === '/login' ? ' #ffd54f' : 'white' }" id="login_button"
+          class="waves-effect waves-light" style="right: 10px; height: 73px;"><i class="material-icons left"
+            style="position: relative; right: -10px;">exit_to_app</i>Inloggen</a>
+        <a *ngIf="authenticationService.currentUserValue" (click)="logout()" id="logout_button"
+          class="waves-effect waves-light" style="right: 10px; height: 73px;"><i class="material-icons left"
+            style="position: relative; right: -10px;">exit_to_app</i>Uitloggen</a>
+      </div>
+
+
+
+    </ul>
+
+    <ul id="nav-mobile" class="#212121 grey darken-4 sidenav">
+      <li *ngIf="!isAdmin()" ><a routerLink="" [ngStyle]="{'color':getCurrentPath() === '/' ? ' #ffd54f' : 'white' }" id="home_button"
+          class="waves-effect waves-light sidenav-close" style="height: 73px; color: white;"><i
+            class="material-icons left" style="position: relative; right: -10px; color: inherit;">home</i>Home</a></li>
+      <li *ngIf="!isAdmin()" ><a routerLink="/cars" [ngStyle]="{'color':getCurrentPath().includes('cars') ? ' #ffd54f' : 'white' }"
+          id="autos_button" class="waves-effect waves-light sidenav-close" style="height: 73px; color: white;"><i
+            class="material-icons left" style="position: relative; right: -10px; color: inherit;">directions_car
+          </i>Auto's</a></li>
+      <!-- <li><a routerLink="/rent" [ngStyle]="{'color':getCurrentPath().includes('rent') ? ' #ffd54f' : 'white' }"
+          id="huren_button" class="waves-effect waves-light sidenav-close" style="height: 73px; color: white;"><i
+            class="material-icons left" style="position: relative; right: -10px; color: inherit;">today</i>Huren</a>
+      </li> -->
+      <li *ngIf="isAdmin()" ><a routerLink="/admin/dashboard" [ngStyle]="{'color':getCurrentPath().includes('dashboard') ? ' #ffd54f' : 'white' }" id="dashboard_button"
+        class="waves-effect waves-light sidenav-close" style="height: 73px; color: white;"><i
+          class="material-icons left" style="position: relative; right: -10px; color: inherit;">dashboard</i>Dashboard</a></li>
+      <li *ngIf="isAdmin()" ><a routerLink="/admin/license-requests" [ngStyle]="{'color':getCurrentPath().includes('requests') ? ' #ffd54f' : 'white' }" id="aanvragen_button"
+        class="waves-effect waves-light sidenav-close" style="height: 73px; color: white;"><i
+          class="material-icons left" style="position: relative; right: -10px; color: inherit;">assignment_late</i>Aanvragen</a></li>
+
+      <li *ngIf="isCustomer()"><a routerLink="/profile"
+          [ngStyle]="{'color':getCurrentPath() === '/profile' ? ' #ffd54f' : 'white' }" id="profiel_button"
+          class="waves-effect waves-light sidenav-close" style="height: 73px; color: white;"><i
+            class="material-icons left"
+            style="position: relative; right: -10px; color: inherit;">perm_identity</i>Profiel</a></li>
+      <li *ngIf="!authenticationService.currentUserValue" style="position: absolute; bottom: 60px; width: 100%;"><a
+          routerLink="/login" [ngStyle]="{'color':getCurrentPath() === '/login' ? ' #ffd54f' : 'white' }"
+          id="login_button" class="waves-effect waves-light sidenav-close" style="height: 73px; color: white;"><i
+            class="material-icons left"
+            style="position: relative; right: -10px; color: inherit;">exit_to_app</i>Inloggen</a></li>
+      <li *ngIf="authenticationService.currentUserValue" style="position: absolute; bottom: 60px; width: 100%;"><a
+          (click)="logout()" id="logout_button" class="waves-effect waves-light sidenav-close"
+          style="height: 73px; color: white;"><i class="material-icons left"
+            style="position: relative; right: -10px; color: inherit;">exit_to_app</i>Uitloggen</a></li>
+
+    </ul>
+    <a data-target="nav-mobile" class="left sidenav-trigger"><i class="material-icons">menu</i></a>
+  </div>
+</nav>

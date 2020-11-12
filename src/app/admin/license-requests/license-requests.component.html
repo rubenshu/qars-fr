@@ -1,0 +1,52 @@
+<div class="section">
+    <div class="container">
+        <div class="center" style="margin-bottom: 35px;">
+            <h1 class="w3-animate-top">Huidige rijbewijs aanvragen</h1>
+            <hr class="w3-border-orange w3-animate-top hr-border">
+        </div>
+        <div class="row">
+
+            <div class="center" *ngIf="loading"><img src="../../../assets/gifs/loading.gif"></div>
+
+            <div *ngIf="no_license_requests">
+                <div class="center" style="margin-top: 10px; color: red;">Op dit moment zijn er geen rijbewijs aanvragen die gecheckt moeten worden.</div>
+            </div>
+            <div *ngFor="let request of license_requests">
+                <ul class="collection">
+                <li style="height: 77px; border-left: 5px solid #ffd54f;" class="collection-item">
+                    <div>{{ request.givenName }} {{ request.familyName }}<br>tel: 0{{ request.phoneNumber }}
+                        <a (click)="showLicenseRequest(request)" class="secondary-content waves-effect waves-light bg-main btn">Check
+                    </a>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div>
+            <h4 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Rijbewijs beoordelen</h4>
+            <hr class="w3-border-orange" style="margin:auto;">
+        </div>
+
+        <div class="imagePreview center" style="margin-top: 20px;">
+            <img class="responsive-img" src="{{ selectedLicenseImage }}"
+                style="width: 50%; height: 50%; border: 2px solid #ffd54f;">
+        </div>
+
+        <p class="center"><b>De geselecteerde rijbewijs</b></p>
+
+    </div>
+    <a class="modal-close waves-effect waves-red red btn btn-flat" style="float: right; color: white;"><i
+            class="material-icons">close</i></a>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light #d50000 red accent-4 btn btn-flat cool_link" style="color: white; margin-right: 5px;"
+            (click)="responseToRequest('DECLINE')">Weigeren</a>
+        <a class="waves-effect waves-light #388e3c green darken-2 btn btn-flat cool_link" style="color: white;"
+            (click)="responseToRequest('ACCEPT')">Accepteren</a>
+    </div>
+</div>

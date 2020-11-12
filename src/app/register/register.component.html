@@ -1,0 +1,259 @@
+<div class="row">
+    <div class="col s12 m8 l4 offset-m2 offset-l4" style="margin-top: 30px;">
+        <div id="registercard" class="card #f5f5f5 grey lighten-4">
+
+            <div class="card-title bg-main" style="height: 10px;">
+            </div>
+
+            <div class="card-content">
+                
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"> 
+
+                    <div style="margin-bottom: 30px; color: red;" *ngIf="error" class="alert alert-red">{{ error }}</div>
+
+                    <div class="center">
+                        <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 35px;">
+                            Persoonsgegevens
+                        </p>
+                        <hr class="w3-border-gray" style="margin:auto;width:30%">
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                          <input id="first_name" type="text" class="validate" formControlName="first_name" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }">
+                          <label for="first_name">Voornaam</label>
+                          <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.first_name.errors.required">Voornaam is verplicht!</div>
+                          </div>
+                        </div>
+                        <div class="input-field col s6">
+                          <input id="last_name" type="text" class="validate" formControlName="last_name" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }">
+                          <label for="last_name">Achternaam</label>
+                          <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.last_name.errors.required">Achternaam is verplicht!</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="email" type="email" class="validate" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                          <label for="email">Email</label>
+                          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.email.errors.required">Email is verplicht!</div>
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.email.errors.pattern">Ongeldig email!</div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="telefoon" type="number" class="validate" formControlName="telefoon" [ngClass]="{ 'is-invalid': submitted && f.telefoon.errors }">
+                          <label for="telefoon">Telefoon</label>
+                          <div *ngIf="submitted && f.telefoon.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.telefoon.errors.required">Telefoon is verplicht!</div>
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.telefoon.errors.pattern">Letters niet toegestaan!</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="username" type="text" class="validate" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                          <label for="username">Gebruikersnaam</label>
+                          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.username.errors.required">Gebruikersnaam is verplicht!</div>
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.username.errors.minlength">Minimaal 4 tekens!</div>
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.username.errors.pattern">Geen speciale characters!</div>
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.username.errors.maxlength">Maximaal 12 tekens!</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <input id="password" type="password" class="validate" minlength="6" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                          <label for="password">Wachtwoord</label>
+                          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.password.errors.required">Wachtwoord is verplicht!</div>
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.password.errors.minlength">Minimaal 6 tekens!</div>
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.password.errors.maxlength">Maximaal 16 tekens!</div>
+                          </div>                                   
+
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="password2" type="password" class="validate" minlength="6" formControlName="password2" [ngClass]="{ 'is-invalid': submitted && f.password2.errors }">
+                            <label for="password2">Herhalen</label>
+                            <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+                                <div style="margin-top: 10px; color: red;" *ngIf="f.password2.errors.minlength">Minimaal 6 tekens!</div>
+                                <div style="margin-top: 10px; color: red;" *ngIf="f.password2.errors.maxlength">Maximaal 16 tekens!</div>
+                            </div>
+                              <div *ngIf="registerForm.errors">
+                                    <div style="margin-top: 10px; color: red;" *ngIf="registerForm.errors.passwordNotMatch">Wachtwoorden komen niet overeen!</div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="center">
+                        <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 35px;">
+                            Adresgegevens
+                        </p>
+                        <hr class="w3-border-gray" style="margin:auto;width:30%">
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                          <input id="street" type="text" class="validate" formControlName="street" [ngClass]="{ 'is-invalid': submitted && f.street.errors }">
+                          <label for="street">Straat</label>
+                          <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.street.errors.required">Straat is verplicht!</div>
+                          </div>
+                        </div>
+                        <div class="input-field col s6">
+                          <input id="housenumber" type="number" class="validate" formControlName="housenumber" [ngClass]="{ 'is-invalid': submitted && f.housenumber.errors }">
+                          <label for="housenumber">Huisnummer</label>
+                          <div *ngIf="submitted && f.housenumber.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.housenumber.errors.required">Huisnummer is verplicht!</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="postal" type="text" class="validate" formControlName="postal" [ngClass]="{ 'is-invalid': submitted && f.postal.errors }">
+                          <label for="postal">Postcode</label>
+                          <div *ngIf="submitted && f.postal.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.postal.errors.required">Postcode is verplicht!</div>
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.postal.errors.pattern">Voer geldige postcode in!</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="city" type="text" class="validate" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                          <label for="city">Plaats</label>
+                          <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.city.errors.required">Plaats is verplicht!</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p>
+                            <label>
+                              <input id="privacy" class="validate" type="checkbox" formControlName="privacy" [ngClass]="{ 'is-invalid': submitted && f.privacy.errors }"/>
+                              <span>Ja, ik heb kennis genomen van het <b><a class="cool_link" (click)="Modal('open')">privacybeleid</a></b> van de verantwoordelijke en geef uitdrukkelijk toestemming voor het
+                                verwerken van mijn e-mailadres en persoonsgegevens.
+                              </span>
+                            </label>
+                          </p>
+                          <div *ngIf="submitted && f.privacy.errors" class="invalid-feedback">
+                            <div style="margin-top: 10px; color: red;" *ngIf="f.privacy.errors.required">Toestemming geven is verplicht!</div>
+                          </div>
+                        </div>
+                      </div>
+                     
+                <br>
+
+                <div class="form-field">
+                    <button [disabled]="loading" id="registreer_button" class="btn-large waves-effect waves-dark #f9a825 yellow darken-3" style="width:100%; border-radius: 20px;" type="submit">Registreer</button>
+                </div><br>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+      <div>
+          <h4 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Privacystatement Quintor</h4>
+          <hr class="w3-border-orange" style="margin:auto;">
+      </div>
+  <p>
+    Bij Quintor vinden we jouw privacy erg belangrijk. Dit betekent dat wij vertrouwelijk, zorgvuldig en
+    volgens de geldende privacywetgeving omgaan met de gegevens die wij over jou te weten komen. <br>
+    In dit privacystatement wordt uitgelegd hoe Quintor omgaat met de persoonsgegevens die wij
+    verwerken van klanten.
+  </p>
+
+  <p>
+    <b>Wie is er verantwoordelijk voor de verwerking van je gegevens?</b><br>
+    Quintor Holding B.V. (KvK-nummer: 02090135) is verantwoordelijk voor het verwerken van je
+    persoonsgegevens. Dit betekent dat Quintor Holding B.V. bepaalt - rekening houdende met de
+    geldende privacywetgeving - welke gegevens er van jou worden verwerkt, hoe dat gebeurt, voor
+    welke doelen en voor hoe lang. Quintor Holding B.V. (hierna: ´Quintor´ of ´wij´) verwerkt
+    persoonsgegevens onder andere door ze op te slaan of te delen met andere partijen.
+  </p>
+
+  <p>
+    <b>Welke persoonsgegevens verwerken wij van klanten?</b><br>
+    Welke persoonsgegevens wij verwerken, hangt af van de diensten en functionaliteiten waar jij
+    gebruik van maakt. Hieronder vind je de gegevens die wij op verschillende momenten van je kunnen
+    verwerken.
+  </p>
+
+  <p>
+    <b>Inschrijven</b><br>
+    Op het moment dat jij je bij Quintor aanmeldt via onze website. applicatie, kunnen wij de volgende
+    gegevens verwerken:
+  </p>
+  <ul class="collection">
+    <li class="collection-item">Stamgegevens: deze omvatten bijvoorbeeld de voornaam, achternaam, het adres (privé
+      en/of zakelijk) en de geboortedatum.</li>
+    <li class="collection-item">Communicatiegegevens: deze omvatten bijvoorbeeld het telefoonnummer, het e-mailadres
+        (privé en/of zakelijk) en het faxnummer, indien van toepassing, en de inhoud van
+        mededelingen (bijvoorbeeld e-mails, brieven, faxen). </li>
+    <li class="collection-item">Contractgegevens: deze omvatten bijvoorbeeld de verhuurinformatie (voertuigcategorie,
+      ophaal- en inleverdatum, ophaal- en inleverlocatie, geboekte extra’s/diensten),
+      huurovereenkomstnummer, reserveringsnummer, rijbewijsgegevens, foto rijbewijs, kopie
+      van het paspoort of gegevens van de identiteitskaart, kentekenplaten van het gehuurde
+      voertuig en informatie over klantloyaliteit en partnerprogramma’s.
+      </li>
+    <li class="collection-item">Financiële gegevens zoals creditcardgegevens. </li>
+    <li class="collection-item">Vrijwillig verstrekte gegevens: dit zijn gegevens die u ons vrijwillig verstrekt zonder dat wij
+      hierom expliciet hebben gevraagd. Ze bevatten informatie zoals uw voorkeuren met
+      betrekking tot de uitrusting en categorie van het voertuig. </li>
+    <li class="collection-item">Bijzondere gegevenscategorieën: ingeval van een ongeval, schade aan het voertuig of
+      soortgelijke incidenten verwerken wij gegevens met betrekking tot de toedracht en de 
+      opgelopen schade. Deze gegevens kunnen worden verstrekt door klanten, passagiers of
+      benadeelde partijen. De gegevens die in dergelijke omstandigheden worden verwerkt zijn
+      bijvoorbeeld gezondheids gerelateerde gegevens zoals gegevens over letsel, alcoholgehalte
+      in het bloed, rijden onder de invloed van verdovende middelen en dergelijke.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>o Gegevens van derden:</b> indien u ons in het kader van de huur van uw voertuig
+      gegevens van derden heeft verstrekt (bijvoorbeeld familieleden, aanvullende
+      bestuurders, passagiers), verwerken we ook deze gegevens.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>o Locatiegegevens:</b> locatiegegevens zijn gegevens die we mogelijk verwerken bij
+      gebruik van de Quintor-app (vgl. → reservering en huur via de Quintor-app) en/of
+      een voertuig dat is uitgerust met telematica (vgl. → aangesloten voertuigen).</li>
+  </ul>
+
+  <p>
+    <b>Wettelijke basis voor verwerking</b>
+  </p>
+  <ul class="collection">
+    <li class="collection-item">Art. 6 (1) zin 1 punt (b) AVG;</li>
+    <li class="collection-item">Art. 6 (1) zin 1 punt (f) AVG;</li>
+    <li class="collection-item">Art. 6 (1) zin 1 punt (c) AVG.</li>
+  </ul>
+
+  <p>
+    <b>Uw rechten</b>
+  </p>
+  <ul class="collection">
+    <li class="collection-item">U heeft het recht om informatie te verkrijgen over uw persoonsgegevens die zijn opgeslagen
+      <b>(art. 15 AVG);</b></li>
+    <li class="collection-item">U heeft ook recht op rectificatie door Quintor van onjuiste persoonsgegevens die u betreffen
+      <b>(art. 16 AVG);</b>
+      </li>
+    <li class="collection-item">Voorts heeft u recht op verwijdering door Quintor van persoonsgegevens die u betreffen
+      <b>(art. 17 AVG);</b>
+      </li>
+    <li class="collection-item">Onder bepaalde omstandigheden heeft u recht op beperking van de verwerking van uw
+      persoonsgegevens <b>(art. 18 AVG).</b></li>
+  </ul>
+
+  </div>
+  <div class="modal-footer">
+  <a class="modal-close waves-effect waves-light bg-main btn btn-flat cool_link" style="color: white;">Duidelijk</a>
+  </div>
+</div>

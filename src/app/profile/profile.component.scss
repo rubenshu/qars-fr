@@ -1,0 +1,77 @@
+.profile-table-1 {
+  width: 45%;
+  float: left;
+}
+
+.profile-table-2 {
+  width: 45%;
+  float: right;
+}
+
+
+@media only screen and (max-width: 800px) {
+  .profile-table-1 {
+    width: 100%;
+  }
+
+  .profile-table-2 {
+    width: 100%;
+  }
+}
+
+#persoonsgegevens_title, #adres_title {
+  border-left: 7px solid #ffd54f;
+  width: 83%;
+}
+
+.cool_link {
+  display: inline-block;
+}
+
+.cool_link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ffd54f;
+  transition: width .3s;
+} 
+
+.cool_link:hover::after {
+  width: 100%;
+  //transition: width .3s;
+}
+
+/* Car listings */
+.booking-history {
+
+  .card-content {
+    padding: 0 0 1rem 0;
+  }
+
+  .divider {
+    margin-bottom: 0.5rem;
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    .row .col.m4 {
+      width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .row .col.m4 {
+      width: 100%;
+    }
+  }
+}
+
+#modal2 {
+  .card-content {
+    padding: 0;
+  }
+
+  td, th {
+    padding: 5px 5px;
+  }
+}

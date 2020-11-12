@@ -1,0 +1,28 @@
+<div class="section">
+    <div class="container">
+        <div class="center" style="margin-bottom: 35px;">
+            <h1 class="w3-animate-top">Vestigingen op locatie {{ location }}</h1>
+            <hr class="w3-border-orange w3-animate-top hr-border">
+        </div>
+        <div class="row">
+            <div *ngFor="let establishment of establishments">
+                <ul class="collection">
+                <li style="height: 55px; border-left: 5px solid #ffd54f;" class="collection-item">
+                    <div>{{ establishment.name }}
+                        <a (click)="showCarsFromEstablishment(establishment.id)" class="secondary-content waves-effect waves-light bg-main btn">
+                        <i class="inline-icon material-icons">send</i>
+                    </a>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="collection">
+  </ul>
+
+<div class="center">
+    <a routerLink="/cars" class="cool_link">Alle auto's bekijken</a>
+  </div>

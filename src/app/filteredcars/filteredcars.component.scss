@@ -1,0 +1,72 @@
+.cool_link {
+    display: inline-block;
+  }
+  
+  .cool_link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #ffd54f;
+    transition: width .3s;
+  }
+  
+  .cool_link:hover::after {
+    width: 100%;
+    //transition: width .3s;
+  }
+
+  /* Car listings */
+.establishment-cars {
+  .row .col.m4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .price {
+    font-size: 14px;
+    padding-top: 0rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0.5rem;
+  }
+
+  .card-content {
+    padding: 0 0 1rem 0;
+
+    .details {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding-top: 1rem;
+      white-space: nowrap;
+    }
+  }
+
+  .btn-block {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .divider {
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-inline {
+    display: flex;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .row .col.m4 {
+      width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .row .col.m4 {
+      width: 100%;
+    }
+  }
+}

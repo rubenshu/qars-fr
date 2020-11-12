@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="center" style="margin-bottom: 35px; margin-top: 25px;">
+        <h1 class="w3-animate-top">Welkom op het Admin-Panel</h1>
+        <hr class="w3-border-orange w3-animate-top hr-border">
+    </div>
+
+    <div class="row flex">
+        <div class="col s12 m6 push-m6">
+            <div>
+                <h2 class="w3-animate-top" style="border-left: 7px solid #ffd54f;">&nbsp;Aantal gebruikers: <ng2-odometer style="color: #ffd54f;" [number]="users" [config]="{ }"></ng2-odometer></h2>
+            </div>
+        </div>
+        <div class="col s12 m6 pull-m6">
+            <div style="display: block; margin-top: 20px;">
+                <canvas baseChart
+                    [chartType]="chartType"
+                    [datasets]="chartDatasets"
+                    [labels]="chartLabels"
+                    [colors]="chartColors"
+                    [options]="chartOptions"
+                    [legend]="true">
+                </canvas>
+                <!-- (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)" -->
+              </div>
+        </div>
+    </div>
+
+    
+</div>

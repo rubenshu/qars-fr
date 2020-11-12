@@ -1,0 +1,205 @@
+<div class="profile" style="margin-top: 25px;">
+    <div class="container" *ngIf="customerInformation">
+        <div style="padding-bottom: 30px;">
+            <div class="center">
+                <p class="w3-animate-top"
+                    style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 35px;">
+                    Mijn profiel</p>
+                <hr class="w3-border-orange w3-animate-top" style="margin:auto;width:50%; margin-top: -30px;">
+            </div>
+        </div>
+
+        <div class="tableWrapper>">
+            <table class="table profile-table-1"
+                style="margin-top: -20px; overflow-x: auto; white-space: nowrap; display: block;">
+                <div class="center" id="persoonsgegevens_title">
+                    <p
+                        style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 35px;">
+                        Persoonsgegevens
+                    </p>
+                </div>
+                <tr>
+                    <td>Gebruikersnaam:</td>
+                    <td>{{ decodedToken.sub }}</td>
+                </tr>
+                <tr>
+                    <td>Voornaam:</td>
+                    <td>{{ customerInformation.given_name }}</td>
+                </tr>
+                <tr>
+                    <td>Achternaam:</td>
+                    <td>{{ customerInformation.family_name }}</td>
+                </tr>
+                <tr>
+                    <td>E-mail:</td>
+                    <td>{{ customerInformation.email }}</td>
+                </tr>
+                <tr>
+                    <td>Telefoon:</td>
+                    <td>{{ customerInformation.phone }}</td>
+                </tr>
+                <tr>
+                    <td>Rijbewijs status: </td>
+                    <td style="color: rgb(240, 39, 39);"
+                        *ngIf="customerInformation.driverlicense_status == 'NIET_INGEDIEND'"><b>Aanvraag niet
+                            ingediend</b></td>
+                    <td style="color: rgb(13, 111, 181);"
+                        *ngIf="customerInformation.driverlicense_status == 'INGEDIEND'"><b>Aanvraag ingediend</b></td>
+                    <td style="color: rgb(34, 130, 34);"
+                        *ngIf="customerInformation.driverlicense_status == 'GEACCEPTEERD'"><b>Aanvraag geaccepteerd</b>
+                    </td>
+                    <td style="color: rgb(240, 39, 39);"
+                        *ngIf="customerInformation.driverlicense_status == 'GEWEIGERD'"><b>Aanvraag geweigerd</b></td>
+                </tr>
+
+                <a *ngIf="customerInformation.driverlicense_status == 'NIET_INGEDIEND' || customerInformation.driverlicense_status == 'GEWEIGERD'"
+                    (click)="Modal('open', 'modal1')" id="rijbewijs_upload_btn"
+                    class="waves-effect waves-light #00c853 green accent-4 btn btn-block" style="margin-top:20px"><i
+                        class="material-icons right">file_upload</i>Rijbewijs uploaden</a>
+
+            </table>
+
+
+
+            <table class="table profile-table-2"
+                style="margin-top: -20px; overflow-x: auto; white-space: nowrap; display: block;">
+                <div class="center" id="adres_title">
+                    <p
+                        style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 35px;">
+                        Adresgegevens
+                    </p>
+                </div>
+                <tr>
+                    <td>Straat:</td>
+                    <td>{{ customerInformation.street }}</td>
+                </tr>
+                <tr>
+                    <td>Huisnummer:</td>
+                    <td>{{ customerInformation.number }}</td>
+                </tr>
+                <tr>
+                    <td>Postcode:</td>
+                    <td>{{ customerInformation.postal }}</td>
+                </tr>
+                <tr>
+                    <td>Plaats:</td>
+                    <td>{{ customerInformation.city }}</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <a (click)="showBookings()" class="waves-effect waves-light bg-main btn btn-block"
+            style="margin-top:2rem;width:100%"><i class="material-icons right">arrow_forward</i>Mijn boekingen</a>
+
+        <!-- Modal Structure -->
+        <div id="modal2" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <div class="section booking-history">
+                    <div>
+                        <h4 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Mijn
+                            boekingen</h4>
+                        <hr class="w3-border-orange" style="margin:auto; margin-bottom: 10px;">
+                        <div class="row">
+                            <div *ngIf="emptyBookingsList">
+                                <div style="margin-top: 10px; color: red;">U heeft nog geen boekingen geplaatst!</div>
+                            </div>
+                            <div *ngFor="let booking of allbookings">
+                                <div class="col s12 m6">
+                                    <div class="card hoverable center-align">
+                                        <div class="card-image">
+                                            <img class="responsive-img activator" src="{{ booking.car.carphoto }}">
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="card-title grey-text text-darken-4">{{ booking.car.carmodel }}
+                                            </div>
+                                            <div class="card-attrs">
+                                                <table class="reponsive-table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>Ingangsdatum:</b></td>
+                                                            <td>{{ booking.beginDate }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Inleverdatum:</b></td>
+                                                            <td>{{ booking.endDate }}</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Ophaallocatie:</b></td>
+                                                            <td>{{ booking.pickUpLocationCode }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Inleverlocatie:</b></td>
+                                                            <td>{{ booking.dropOffLocationCode }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Totaalprijs:</b></td>
+                                                            <td>&nbsp;€{{ booking.totalAmount }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-close waves-effect waves-light bg-main btn btn-flat" style="color: white;">Duidelijk</a>
+            </div>
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <div>
+                    <h4 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Rijbewijs
+                        uploaden</h4>
+                    <hr class="w3-border-orange" style="margin:auto;">
+                </div>
+                <p>
+                    Upload hier een foto van uw rijbewijs. Onze medewerkers zullen dit zo spoedig mogelijk voor u gaan
+                    beoordelen.<br>
+                    - <b>Voorkant van uw rijbewijs!</b><br>
+                    - <b>Foto moet scherp (leesbaar) zijn!</b>
+                </p>
+                <form style="margin-top: 40px;" [formGroup]="uploadForm" (ngSubmit)="submit()">
+                    <div class="file-field input-field">
+                        <div class="waves-effect waves-light #00c853 green accent-4 btn btn-block"
+                            style="margin-top: -15px">
+                            <span>Upload uw foto<i class="material-icons right">file_upload</i></span>
+                            <input class="validate" type="file" (change)="showPreview($event)">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input disabled class="file-path validate" type="text" placeholder="Upload uw foto..."
+                                style="margin-top: 7px;">
+                        </div>
+                    </div>
+
+                    <!-- <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div style="margin-top: 10px; color: red;" *ngIf="f.avatar.errors.required">Foto is verplicht!</div>
+                    </div> -->
+
+                    <div class="imagePreview center" *ngIf="imageURL && imageURL !== ''">
+                        <img class="responsive-img" [src]="imageURL" [alt]="img"
+                            style="width: 50%; height: 50%; border: 2px solid #ffd54f;">
+                    </div>
+
+                </form>
+
+            </div>
+            <a class="modal-close waves-effect waves-red red btn btn-flat" style="float: right; color: white;"><i
+                    class="material-icons">close</i></a>
+            <div class="modal-footer">
+                <a class="waves-effect waves-light bg-main btn btn-flat cool_link" style="color: white;" type="submit"
+                    (click)="submit()">Aanvraag indienen</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
